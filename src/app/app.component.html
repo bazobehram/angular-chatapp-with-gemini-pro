@@ -1,0 +1,144 @@
+<div class="d-flex justify-content-center align-items-center">
+  <form [formGroup]="chatForm" class="g-3 p-20">
+    <div class="row">
+      <div class="col-md-auto">
+        <label for="apiKey" class="form-label">API Key</label>
+        <input
+          type="text"
+          class="form-control"
+          id="api-key"
+          formControlName="apiKey"
+        />
+      </div>
+      <div class="col-md-auto">
+        <label for="model" class="form-label">Model</label>
+        <select class="form-select" id="model" formControlName="model">
+          @for (option of modelOptions; track option) {
+          <option [disabled]="option.disabled" [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+      <div class="col-md-auto">
+        <label for="temperature" class="form-label">Temperature</label>
+        <select
+          class="form-select"
+          id="temperature"
+          formControlName="temperature"
+        >
+        @for( option of temperatureOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+        </select>
+      </div>
+      <div class="col-md-auto">
+        <label for="character-select" class="form-label">Bot</label>
+        <select class="form-select" formControlName="bot">
+          <option *ngFor="let item of characterSelection" [ngValue]="item">
+            {{ "Talk to " + item.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="chat">
+  <div *ngIf="chatForm.value.bot" class="chat-title">
+    <h1>{{ chatForm.value.bot.id ? "Gemini" : "Behram Bazo" }}</h1>
+    <h2>
+      {{ chatForm.value.bot.id ? "Google Deep Mind " : "Frontend Developer" }}
+    </h2>
+    <figure class="avatar">
+      <img
+        [src]="
+         chatForm.value.bot.id
+            ? 'assets/images/google-gemini-icon.svg'
+            : 'assets/images/behram.jpg'
+        "
+      />
+    </figure>
+  </div>
+  <div #messagesContainer class="messages">
+    @if (messagesHistory.length < 1) {
+    <h2 class="welcome-message">Hello, How can I help today?</h2>
+    } @for ( message of messagesHistory; track message.role) { @if
+    (message.parts) {
+    <div [@typeWritterEffect] class="messages-content">
+      <span
+        [ngClass]="{
+          gemini: message.role === 'model',
+          user: message.role === 'user'
+        }"
+      >
+        <i
+          class="fa"
+          [ngClass]="{
+            'fa-commenting-o': message.role === 'model',
+            'fa-user-circle-o': message.role === 'user'
+          }"
+          aria-hidden="true"
+        ></i>
+        &nbsp;
+
+        {{ message.role === "model" ? "AI" : "User" }}:&nbsp;</span
+      >
+      <span class="text" [innerHTML]="message.parts | convertTextToHtml">
+      </span>
+    </div>
+    } }
+
+    <div class="loading-container">
+      <div class="loading">
+        <ngx-loading [show]="loading" [config]="loadingConfig"></ngx-loading>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="chatForm.value.bot" class="message-box">
+    <div class="prepared-messages">
+      @if (!chatForm.value.bot.id) {
+      <ul [@typeWritterEffect]>
+        @for (question of bQuestions; track question) {
+        <li
+          (click)="
+            sendMessage(question); userMessage = ''
+          "
+        >
+          {{ question }}
+        </li>
+        }
+      </ul>
+      } @else {
+      <ul [@typeWritterEffect]>
+        @for (question of gQuestions; track question) {
+        <li
+          (click)="
+            sendMessage(question); userMessage = ''
+          "
+        >
+          {{ question }}
+        </li>
+        }
+      </ul>
+      }
+    </div>
+    <textarea
+      [(ngModel)]="userMessage"
+      (keydown.enter)="
+        sendMessage(userMessage!); userMessage = null
+      "
+      type="text"
+      class="message-input"
+      [placeholder]="'Ask ' + chatForm.value.bot.value"
+      rows="2"
+    ></textarea>
+    <button
+      (click)="sendMessage(userMessage!); userMessage = null"
+      [disabled]="!userMessage || loading"
+      type="button"
+      class="message-submit"
+    >
+      Send
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
