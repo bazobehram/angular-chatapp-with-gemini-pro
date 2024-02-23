@@ -42,10 +42,10 @@ Please email bazobehram@hotmail.com for any questions or comments.
 
 Important Note: A Google Cloud API key is required. Please use your API key responsibly and in accordance with Google's terms of service.
 
-Screenshots
-
-![image](https://github.com/bazobehram/angular-chatapp-with-gemini-pro/assets/74256198/c5681b61-9c08-41cd-9fd0-63d319021ccf)
-
-
 Sources: 
 UI template -> https://codepen.io/supah/pen/jqOBqp
+
+Screenshots
+
+![chat](https://github.com/bazobehram/angular-chatapp-with-gemini-pro/assets/74256198/6637773e-bdea-42b0-ae37-d4c0ebcfb3fd)
+
