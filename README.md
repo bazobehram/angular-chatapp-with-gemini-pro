@@ -1,27 +1,51 @@
-# AngularChatappWithGeminiAi
+Angular Chat Application with Gemini
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+This project is a versatile and engaging chat application powered by the Google Gemini language model, deployed on GitHub Pages.
 
-## Development server
+Live Demo: https://bazobehram.github.io/angular-chatapp-with-gemini-pro/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Features
 
-## Code scaffolding
+Multiple Chat Personalities: Users switch between a frontend developer ("Behram") and the powerful Gemini AI.
+Tailored Questions: Quick suggestions are provided based on the selected personality.
+Contextual Understanding: Gemini leverages conversation history for meaningful and consistent responses.
+Clean and Responsive Interface: Built with Angular for a polished and device-agnostic experience.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Technologies
 
-## Build
+Angular: Core application framework.
+Google Generative AI SDK: Access to the Gemini language model.
+Ngx-Loading: Loading indicators during AI response generation.
+Setup
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Clone the repository.
 
-## Running unit tests
+Install dependencies: npm install
+Obtain a Google Cloud API key and add it to your .env file (Keep this file out of version control with .gitignore)
+Start the development server: ng serve
+Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Access the application in your modern web browser at http://localhost:4200.
 
-## Running end-to-end tests
+Future Development
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Multi-language support.
+Voice interaction.
+Sentiment analysis.
+Contributions
 
-## Further help
+Feel free to submit bug reports, feature suggestions, and pull requests.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Contact
+
+Please email bazobehram@hotmail.com for any questions or comments.
+
+Important Note: A Google Cloud API key is required. Please use your API key responsibly and in accordance with Google's terms of service.
+
+Screenshots
+
+![image](https://github.com/bazobehram/angular-chatapp-with-gemini-pro/assets/74256198/c5681b61-9c08-41cd-9fd0-63d319021ccf)
+
+
+Sources: 
+UI template -> https://codepen.io/supah/pen/jqOBqp
