@@ -11,7 +11,12 @@ import { trigger, style, transition, animate } from "@angular/animations";
 import { DataService } from "./data.service";
 import { CommonModule } from "@angular/common";
 import { ConvertTextToHtmlPipe } from "./convert-text-to-html.pipe";
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { GeminiConfig } from "./chat-form";
 import { API_KEY_CONF } from "../config";
 
@@ -24,7 +29,7 @@ import { API_KEY_CONF } from "../config";
     NgxLoadingModule,
     ConvertTextToHtmlPipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
@@ -77,17 +82,21 @@ export class AppComponent {
   temperatureOptions = [
     { value: 0.2, label: "Low Creativity" },
     { value: 0.5, label: "Moderate Creativity" },
-    { value: 0.9, label: "High Creativity" }
-];
+    { value: 0.9, label: "High Creativity" },
+  ];
 
-modelOptions = [
-  { label: "Gemini v1.0.0-Pro (Basic)", value: "gemini-1.0-pro" },
-  { label: "Gemini v1.0.0-Pro-001 (Updated)", value:  "gemini-1.0-pro-001" }, 
-  { label: "Gemini v1.5 (Experimental)", value: "gemini-1.5-pro", disabled: true } 
-];
+  modelOptions = [
+    { label: "Gemini v1.0.0-Pro (Basic)", value: "gemini-1.0-pro" },
+    { label: "Gemini v1.0.0-Pro-001 (Updated)", value: "gemini-1.0-pro-001" },
+    {
+      label: "Gemini v1.5 (Experimental)",
+      value: "gemini-1.5-pro",
+      disabled: true,
+    },
+  ];
 
   chatForm = new FormGroup({
-    apiKey: new FormControl(API_KEY_CONF || ''),
+    apiKey: new FormControl(API_KEY_CONF || ""),
     temperature: new FormControl(this.temperatureOptions[2].value),
     bot: new FormControl(this.characterSelection[0]),
     model: new FormControl(this.modelOptions[0].value),
@@ -108,14 +117,16 @@ modelOptions = [
       }
     );
     this.dataService
-      .generateContentWithGeminiPro(message, this.messagesHistory, this.chatForm.value as GeminiConfig)
+      .generateContentWithGeminiPro(
+        message,
+        this.messagesHistory,
+        this.chatForm.value as GeminiConfig
+      )
       .subscribe({
         next: (res: any) => {
           this.loading = false;
-          this.userMessage = null
-          // Remove the loading message
+          this.userMessage = null;
           this.messagesHistory = this.messagesHistory.slice(0, -2);
-          // Append the new messages
           this.messagesHistory.push(
             {
               role: "user",
@@ -131,7 +142,6 @@ modelOptions = [
         error: (error) => {
           this.loading = false;
           console.error("Error generating content:", error);
-          // Optionally, update the UI to show an error message
           this.messagesHistory.push({
             role: "model",
             parts: "Sorry, something went wrong. Please try again later.",

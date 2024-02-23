@@ -1,51 +1,51 @@
-Angular Chat Application with Gemini
+# Angular Chat Application with Gemini
 
-This project is a versatile and engaging chat application powered by the Google Gemini language model, deployed on GitHub Pages.
+## Overview
 
-Live Demo: https://bazobehram.github.io/angular-chatapp-with-gemini-pro/
+Angular Chat Application with Gemini is a cutting-edge chat application that integrates the Google Gemini language model to offer a dynamic chatting experience. Hosted on GitHub Pages, this project allows users to engage in conversations with multiple personalities, including a frontend developer, "Behram," and the Gemini AI itself. Designed with Angular, this application delivers a clean, responsive interface that adapts to various devices for a seamless user experience.
 
-Features
+**Live Demo:** [Angular ChatApp with Gemini](https://bazobehram.github.io/angular-chatapp-with-gemini-pro/)
 
-Multiple Chat Personalities: Users switch between a frontend developer ("Behram") and the powerful Gemini AI.
-Tailored Questions: Quick suggestions are provided based on the selected personality.
-Contextual Understanding: Gemini leverages conversation history for meaningful and consistent responses.
-Clean and Responsive Interface: Built with Angular for a polished and device-agnostic experience.
+## Features
 
-Technologies
+- **Multiple Chat Personalities:** Toggle between the insightful frontend developer "Behram" and the versatile Gemini AI for varied conversation dynamics.
+- **Tailored Questions:** Receive quick suggestions tailored to the current chat personality for engaging conversations.
+- **Contextual Understanding:** Gemini's integration allows for conversation history analysis, ensuring meaningful and consistent interactions.
+- **Responsive Interface:** Developed with Angular, the application boasts a polished interface that's responsive across all devices.
 
-Angular: Core application framework.
-Google Generative AI SDK: Access to the Gemini language model.
-Ngx-Loading: Loading indicators during AI response generation.
-Setup
+## Technologies
 
-Clone the repository.
+- **Angular:** The backbone framework providing the structure for this dynamic web application.
+- **Google Generative AI SDK:** Enables direct access to the Gemini language model for generating responsive dialogues.
+- **Ngx-Loading:** Offers visual feedback during AI response generation with sleek loading indicators.
 
-Install dependencies: npm install
-Obtain a Google Cloud API key and add it to your .env file (Keep this file out of version control with .gitignore)
-Start the development server: ng serve
-Usage
+## Setup
 
-Access the application in your modern web browser at http://localhost:4200.
+1. Clone the repository to your local machine.
+2. Install dependencies by running `npm install` in your terminal.
+3. Obtain a Google Cloud API key and securely add it to your `.env` file (ensure `.env` is listed in your `.gitignore` to avoid exposing your key).
+4. Launch the development server with `ng serve`.
+5. Visit `http://localhost:4200` in your web browser to explore the app.
 
-Future Development
+## Future Development
 
-Multi-language support.
-Voice interaction.
-Sentiment analysis.
-Contributions
+- **Multi-Language Support:** Expanding the app to support multiple languages for a wider user base.
+- **Voice Interaction:** Implementing voice commands for hands-free operation.
+- **Sentiment Analysis:** Integrating sentiment analysis to tailor responses based on the emotional tone of the conversation.
 
-Feel free to submit bug reports, feature suggestions, and pull requests.
+## Contact
 
-Contact
+For questions, comments, or suggestions, please reach out to us via email at [bazobehram@hotmail.com](mailto:bazobehram@hotmail.com).
 
-Please email bazobehram@hotmail.com for any questions or comments.
+## Important Note
 
-Important Note: A Google Cloud API key is required. Please use your API key responsibly and in accordance with Google's terms of service.
+A Google Cloud API key is required to access the Gemini language model. Please ensure you use your API key responsibly and adhere to Google's terms of service.
 
-Sources: 
-UI template -> https://codepen.io/supah/pen/jqOBqp
+## Acknowledgments
 
-Screenshots
+- **UI Template:** Inspired by a design on [CodePen](https://codepen.io/supah/pen/jqOBqp).
+
+## Screenshots
 
 ![chat](https://github.com/bazobehram/angular-chatapp-with-gemini-pro/assets/74256198/6637773e-bdea-42b0-ae37-d4c0ebcfb3fd)
 

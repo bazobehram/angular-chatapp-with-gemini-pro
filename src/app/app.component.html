@@ -14,7 +14,9 @@
         <label for="model" class="form-label">Model</label>
         <select class="form-select" id="model" formControlName="model">
           @for (option of modelOptions; track option) {
-          <option [disabled]="option.disabled" [value]="option.value">{{ option.label }}</option>
+          <option [disabled]="option.disabled" [value]="option.value">
+            {{ option.label }}
+          </option>
           }
         </select>
       </div>
@@ -25,25 +27,28 @@
           id="temperature"
           formControlName="temperature"
         >
-        @for( option of temperatureOptions; track option.value) {
+          @for( option of temperatureOptions; track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
-        }
+          }
         </select>
       </div>
       <div class="col-md-auto">
         <label for="character-select" class="form-label">Bot</label>
         <select class="form-select" formControlName="bot">
-          <option *ngFor="let item of characterSelection" [ngValue]="item">
+          @for (item of characterSelection; track item.id) {
+          <option [ngValue]="item">
             {{ "Talk to " + item.value }}
           </option>
+          }
         </select>
       </div>
     </div>
   </form>
 </div>
 
+@if (chatForm.value.bot) {
 <div class="chat">
-  <div *ngIf="chatForm.value.bot" class="chat-title">
+  <div class="chat-title">
     <h1>{{ chatForm.value.bot.id ? "Gemini" : "Behram Bazo" }}</h1>
     <h2>
       {{ chatForm.value.bot.id ? "Google Deep Mind " : "Frontend Developer" }}
@@ -51,7 +56,7 @@
     <figure class="avatar">
       <img
         [src]="
-         chatForm.value.bot.id
+          chatForm.value.bot.id
             ? 'assets/images/google-gemini-icon.svg'
             : 'assets/images/behram.jpg'
         "
@@ -93,16 +98,12 @@
       </div>
     </div>
   </div>
-  <div *ngIf="chatForm.value.bot" class="message-box">
+  <div class="message-box">
     <div class="prepared-messages">
       @if (!chatForm.value.bot.id) {
       <ul [@typeWritterEffect]>
         @for (question of bQuestions; track question) {
-        <li
-          (click)="
-            sendMessage(question); userMessage = ''
-          "
-        >
+        <li (click)="sendMessage(question); userMessage = ''">
           {{ question }}
         </li>
         }
@@ -110,11 +111,7 @@
       } @else {
       <ul [@typeWritterEffect]>
         @for (question of gQuestions; track question) {
-        <li
-          (click)="
-            sendMessage(question); userMessage = ''
-          "
-        >
+        <li (click)="sendMessage(question); userMessage = ''">
           {{ question }}
         </li>
         }
@@ -123,9 +120,7 @@
     </div>
     <textarea
       [(ngModel)]="userMessage"
-      (keydown.enter)="
-        sendMessage(userMessage!); userMessage = null
-      "
+      (keydown.enter)="sendMessage(userMessage!); userMessage = null"
       type="text"
       class="message-input"
       [placeholder]="'Ask ' + chatForm.value.bot.value"
@@ -141,4 +136,5 @@
     </button>
   </div>
 </div>
+}
 <router-outlet></router-outlet>
