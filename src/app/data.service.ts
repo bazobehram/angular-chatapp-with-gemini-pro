@@ -1,17 +1,16 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   GoogleGenerativeAI,
   HarmBlockThreshold,
   HarmCategory,
-} from "@google/generative-ai";
-import { parts } from "../app/prompt/behram";
-import { from } from "rxjs";
-import { GeminiConfig } from "./chat-form";
-import { API_KEY_CONF } from "../config";
-
+} from '@google/generative-ai';
+import { parts } from '../app/prompt/behram';
+import { from } from 'rxjs';
+import { GeminiConfig } from './chat-form';
+import { API_KEY_CONF } from '../config';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DataService {
   generateContentWithGeminiPro(
@@ -20,7 +19,7 @@ export class DataService {
     geminiConfig: GeminiConfig
   ) {
     const MODEL_NAME = geminiConfig.model;
-    const API_KEY = geminiConfig.apiKey || API_KEY_CONF;
+    const API_KEY = geminiConfig.apiKey || API_KEY_CONF;
 
     async function response() {
       const genAI = new GoogleGenerativeAI(API_KEY);
@@ -52,12 +51,14 @@ export class DataService {
         },
       ];
 
-
       if (geminiConfig.bot.id) {
         const chat = model.startChat({
           generationConfig,
           safetySettings,
-          history: history,
+          history: history.map((h) => ({
+            role: h.role,
+            parts: [{ text: h.parts }],
+          })),
         });
 
         const result = await chat.sendMessage(message);
@@ -67,7 +68,7 @@ export class DataService {
       } else {
         parts.push({ text: `input: ${message}` });
         const result = await model.generateContent({
-          contents: [{ role: "user", parts }],
+          contents: [{ role: 'user', parts }],
           generationConfig,
           safetySettings,
         });
